@@ -61,7 +61,6 @@ def execute_twitter_actions():
     favorite = E6.get().lower()
     follow = E7.get().lower()
 
-    # Execute actions on tweets found by search query
     for tweet in tweepy.Cursor(api.search_tweets, q=search).items(number_of_tweets):
         try:
             if reply == "yes":
@@ -89,9 +88,8 @@ def execute_twitter_actions():
             break
 
 
-# Setup and pack the button to trigger Twitter actions
+# Button to trigger the action
 submit_button = Button(root, text="Execute", command=execute_twitter_actions)
 submit_button.pack()
 
-# Run the GUI event loop
 root.mainloop()

@@ -7,7 +7,7 @@ load_dotenv()
 
 # Access the environment variables for Twitter API
 consumer_key = os.getenv("CONSUMER_KEY")
-consumer_secret = os.getenv("CONSUMER_SECRET_KEY")
+consumer_secret = os.getenv("CONSUMER_SECRET")
 access_token = os.getenv("ACCESS_TOKEN")
 access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
 
@@ -43,10 +43,6 @@ for label, entry in zip(labels, entries):
 
 
 def execute_twitter_actions():
-    """
-    Fetches user inputs and executes Twitter actions like replying, retweeting,
-    favoriting, and following based on specified criteria.
-    """
     search = E1.get()
     try:
         number_of_tweets = int(E2.get())
@@ -54,14 +50,12 @@ def execute_twitter_actions():
         print("Please enter a valid number of tweets")
         return
 
-    # Collect input values for actions
     reply = E3.get().lower()
     phrase = E4.get()
     retweet = E5.get().lower()
     favorite = E6.get().lower()
     follow = E7.get().lower()
 
-    # Execute actions on tweets found by search query
     for tweet in tweepy.Cursor(api.search_tweets, q=search).items(number_of_tweets):
         try:
             if reply == "yes":
@@ -89,9 +83,8 @@ def execute_twitter_actions():
             break
 
 
-# Setup and pack the button to trigger Twitter actions
+# Button to trigger the action
 submit_button = Button(root, text="Execute", command=execute_twitter_actions)
 submit_button.pack()
 
-# Run the GUI event loop
 root.mainloop()

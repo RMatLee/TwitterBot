@@ -93,5 +93,4 @@ def execute_twitter_actions():
 submit_button = Button(root, text="Execute", command=execute_twitter_actions)
 submit_button.pack()
 
-# Run the GUI event loop
 root.mainloop()
